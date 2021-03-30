@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Router>
-        {/* <div className="container"> */}
+        <div className="container">
       <HeaderComponent />
       <div className="container">
         <Switch> 
@@ -19,7 +19,7 @@ function App() {
       
     </div>
     <FooterComponent />
-    {/* </div> */}
+    </div>
     </Router>
     </div>
   );
