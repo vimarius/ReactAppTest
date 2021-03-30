@@ -1,4 +1,5 @@
 import React from 'react';
+import StudentService from '../services/StudentService';
 
 
 class CreateStudentComponent extends React.Component {
@@ -37,6 +38,10 @@ class CreateStudentComponent extends React.Component {
 
         let student = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
         console.log('student => ' + JSON.stringify(student));
+
+        StudentService.createStudent(student).then(res => {
+            this.props.history.push('/students');
+        });
     }
 
     cancel() {
