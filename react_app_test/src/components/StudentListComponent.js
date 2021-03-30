@@ -1,4 +1,5 @@
 import React from 'react';
+import StudentService from '../services/StudentService';
 
 
 class StudentListComponent extends React.Component {
@@ -9,6 +10,11 @@ class StudentListComponent extends React.Component {
         };
     }
 
+    componentDidMount(){
+        StudentService.getStudents().then((res) => {
+            this.setState({students: res.data});
+        });
+    }
     render() {
         return (
             <div>
