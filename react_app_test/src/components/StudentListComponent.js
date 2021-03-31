@@ -10,6 +10,11 @@ class StudentListComponent extends React.Component {
         };
 
         this.addStudent=this.addStudent.bind(this);
+        this.editStudent=this.editStudent.bind(this);
+    }
+
+    editStudent(id) {
+        this.props.history.push(`update-student/${id}`);
     }
 
     componentDidMount(){
@@ -51,6 +56,9 @@ this.props.history.push('/add-student');
                                         <td>{student.firstName}</td>
                                         <td>{student.lastName}</td>
                                         <td>{student.email}</td>
+                                        <td>
+                                            <button onClick={() => this.editStudent(student.id)} className="btn btn-info">Update</button>
+                                        </td>
 
                                     </tr>
                                 )
