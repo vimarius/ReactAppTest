@@ -14,7 +14,7 @@ class StudentListComponent extends React.Component {
     }
 
     editStudent(id) {
-        this.props.history.push(`update-student/${id}`);
+        this.props.history.push(`/update-student/${id}`);
     }
 
     componentDidMount(){
