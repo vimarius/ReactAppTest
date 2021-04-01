@@ -24,6 +24,10 @@ class StudentListComponent extends React.Component {
         });
     }
 
+    viewStudent(id){
+        this.props.history.push(`/view-student/${id}`);
+    }
+
     componentDidMount(){
         StudentService.getStudents().then((res) => {
             this.setState({students: res.data});
@@ -41,6 +45,7 @@ this.props.history.push('/add-student');
                 <div className="row">
                     <button className="btn btn-primary" onClick={this.addStudent}>Add Student</button>
                 </div>
+                <br></br>
                 <div className="row">
 
                     <table className="table table-striped table-bordered">
@@ -66,6 +71,7 @@ this.props.history.push('/add-student');
                                         <td>
                                             <button onClick={() => this.editStudent(student.id)} className="btn btn-info">Update</button>
                                             <button style ={{marginLeft:"10px"}}onClick={() => this.deleteStudent(student.id)} className="btn btn-danger">Delete</button>
+                                            <button style ={{marginLeft:"10px"}}onClick={() => this.viewStudent(student.id)} className="btn btn-warning">View</button>
                                         </td>
 
                                     </tr>
