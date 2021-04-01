@@ -11,10 +11,17 @@ class StudentListComponent extends React.Component {
 
         this.addStudent=this.addStudent.bind(this);
         this.editStudent=this.editStudent.bind(this);
+        this.deleteStudent= this.deleteStudent.bind(this);
     }
 
     editStudent(id) {
         this.props.history.push(`/update-student/${id}`);
+    }
+
+    deleteStudent(id) {
+        StudentService.deleteStudent(id).then((res) => {
+            this.setState({students: this.state.students.filter(student => student.id !== id)});
+        });
     }
 
     componentDidMount(){
@@ -58,6 +65,7 @@ this.props.history.push('/add-student');
                                         <td>{student.email}</td>
                                         <td>
                                             <button onClick={() => this.editStudent(student.id)} className="btn btn-info">Update</button>
+                                            <button style ={{marginLeft:"10px"}}onClick={() => this.deleteStudent(student.id)} className="btn btn-danger">Delete</button>
                                         </td>
 
                                     </tr>
