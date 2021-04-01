@@ -18,10 +18,21 @@ class UpdateStudentComponent extends React.Component {
         this.updateStudent = this.updateStudent.bind(this);
     }
 
+    updateStudent = (e) => {
+        e.preventDefault();
+
+        let student = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
+        console.log('student => ' + JSON.stringify(student));
+
+        StudentService.updateStudent(student, this.state.id).then( (res) => {
+            this.props.history.push('/students');
+        });
+    }
+
     componentDidMount() {
         StudentService.getStudentById(this.state.id).then((res) => {
             let student = res.data;
-            this.setState({ firstName: student.firstName, lastName: student.last, email: student.email});
+            this.setState({ firstName: student.firstName, lastName: student.lastName, email: student.email});
 
         });
     }
@@ -41,14 +52,7 @@ class UpdateStudentComponent extends React.Component {
 
     }
 
-    updateStudent = (e) => {
-        e.preventDefault();
-
-        let student = {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email};
-        console.log('student => ' + JSON.stringify(student));
-
-       
-    }
+    
 
     cancel() {
         this.props.history.push('/students');

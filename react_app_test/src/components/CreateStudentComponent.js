@@ -6,7 +6,7 @@ class CreateStudentComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            
             firstName: '',
             lastName: '',
             email: ''
@@ -18,6 +18,8 @@ class CreateStudentComponent extends React.Component {
         this.saveStudent = this.saveStudent.bind(this);
     }
 
+    
+    
     changeFirstNameHandler(event){
         this.setState({ firstName: event.target.value});
 
@@ -42,11 +44,14 @@ class CreateStudentComponent extends React.Component {
         StudentService.createStudent(student).then(res => {
             this.props.history.push('/students');
         });
+       
     }
 
     cancel() {
         this.props.history.push('/students');
     }
+
+    
     render() {
         return (
             <div>
@@ -55,6 +60,7 @@ class CreateStudentComponent extends React.Component {
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
                         <h3 className="text-center">Add Student</h3>
+                        
                         <div className="card-body">
                             <form>
                                 <div className="form-group">
