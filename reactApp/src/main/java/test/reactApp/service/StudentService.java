@@ -1,10 +1,13 @@
 package test.reactApp.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import test.reactApp.command.CreateStudentCommand;
 import test.reactApp.exception.ResourceNotFoundException;
@@ -52,4 +55,13 @@ public class StudentService {
 		return ResponseEntity.ok(updatedStudent);
 	}
 
+	public ResponseEntity<Map<String, Boolean>> deleteStudent(@PathVariable("id") Long id) {
+		Student student = studentRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Student with id: " + id + " does not exist."));
+		studentRepository.delete(student);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+
+	}
 }
